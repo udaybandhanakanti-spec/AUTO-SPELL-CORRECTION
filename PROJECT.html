@@ -1,0 +1,3061 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>AutoSpell — AI-Powered Spell Correction</title>
+
+
+<style>
+
+/* =========================================================
+   AUTOSPELL
+   PROFESSIONAL SPELL CORRECTION WEBSITE
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+:root{
+
+    --bg:#070a12;
+    --bg2:#0a0f1c;
+
+    --card:rgba(255,255,255,.045);
+    --card-hover:rgba(255,255,255,.065);
+
+    --border:rgba(255,255,255,.09);
+
+    --text:#f7f9fc;
+    --muted:#8c96a8;
+
+    --purple:#7c5cff;
+    --purple2:#9b83ff;
+
+    --blue:#4e8cff;
+
+    --green:#35d39a;
+
+    --red:#ff7185;
+
+    --yellow:#ffc861;
+
+}
+
+
+html{
+    scroll-behavior:smooth;
+}
+
+
+body{
+
+    min-height:100vh;
+
+    font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 10% 0%,
+            rgba(124,92,255,.12),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 100%,
+            rgba(78,140,255,.10),
+            transparent 30%
+        ),
+        var(--bg);
+
+    color:var(--text);
+
+    overflow-x:hidden;
+
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    width:500px;
+    height:500px;
+
+    top:-250px;
+    left:-200px;
+
+    background:#6548ff;
+
+    filter:blur(180px);
+
+    opacity:.12;
+
+    pointer-events:none;
+
+}
+
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    width:500px;
+    height:500px;
+
+    bottom:-280px;
+    right:-200px;
+
+    background:#1688ff;
+
+    filter:blur(180px);
+
+    opacity:.10;
+
+    pointer-events:none;
+
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar{
+
+    height:74px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 6%;
+
+    border-bottom:1px solid var(--border);
+
+    background:rgba(7,10,18,.78);
+
+    backdrop-filter:blur(20px);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+
+}
+
+
+.brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+
+.brand-logo{
+
+    width:40px;
+    height:40px;
+
+    border-radius:11px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8b68ff,
+            #397eff
+        );
+
+    box-shadow:
+        0 0 30px
+        rgba(124,92,255,.30);
+
+    font-weight:900;
+
+    font-size:19px;
+
+}
+
+
+.brand-name{
+
+    font-size:17px;
+
+    font-weight:850;
+
+    letter-spacing:-.4px;
+
+}
+
+
+.brand-sub{
+
+    margin-top:2px;
+
+    color:#687286;
+
+    font-size:9px;
+
+    letter-spacing:1px;
+
+}
+
+
+.nav-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+.status{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:7px 11px;
+
+    border-radius:30px;
+
+    background:rgba(53,211,154,.07);
+
+    border:1px solid
+        rgba(53,211,154,.20);
+
+    color:#67e7b7;
+
+    font-size:10px;
+
+    font-weight:800;
+
+}
+
+
+.status-dot{
+
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:var(--green);
+
+    box-shadow:
+        0 0 10px var(--green);
+
+}
+
+
+.github{
+
+    color:#dce2ed;
+
+    text-decoration:none;
+
+    padding:8px 12px;
+
+    border-radius:8px;
+
+    border:1px solid var(--border);
+
+    background:rgba(255,255,255,.04);
+
+    font-size:11px;
+
+    transition:.2s;
+
+}
+
+
+.github:hover{
+
+    background:rgba(255,255,255,.08);
+
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.container{
+
+    width:90%;
+
+    max-width:1200px;
+
+    margin:auto;
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+
+    text-align:center;
+
+    padding:70px 10px 45px;
+
+}
+
+
+.badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:7px 13px;
+
+    border-radius:30px;
+
+    color:#aa9aff;
+
+    background:
+        rgba(124,92,255,.08);
+
+    border:1px solid
+        rgba(124,92,255,.25);
+
+    font-size:10px;
+
+    font-weight:800;
+
+    letter-spacing:.7px;
+
+}
+
+
+.hero h1{
+
+    margin-top:20px;
+
+    font-size:
+        clamp(42px,7vw,76px);
+
+    line-height:.98;
+
+    letter-spacing:-4px;
+
+    font-weight:900;
+
+}
+
+
+.hero h1 span{
+
+    background:
+        linear-gradient(
+            90deg,
+            #a28cff,
+            #5f9bff
+        );
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    color:transparent;
+
+}
+
+
+.hero p{
+
+    max-width:650px;
+
+    margin:22px auto 0;
+
+    color:var(--muted);
+
+    line-height:1.7;
+
+    font-size:14px;
+
+}
+
+
+/* =========================================================
+   WORKSPACE
+========================================================= */
+
+.workspace{
+
+    display:grid;
+
+    grid-template-columns:
+        minmax(0,1fr)
+        300px;
+
+    gap:18px;
+
+}
+
+
+/* =========================================================
+   EDITOR
+========================================================= */
+
+.editor-card{
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.018)
+        );
+
+    box-shadow:
+        0 25px 80px
+        rgba(0,0,0,.28);
+
+}
+
+
+.editor-head{
+
+    height:57px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 17px;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+
+.dots{
+
+    display:flex;
+
+    gap:6px;
+
+}
+
+
+.dots span{
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#3a4353;
+
+}
+
+
+.editor-title{
+
+    position:absolute;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    color:#929bad;
+
+    font-size:10px;
+
+    letter-spacing:.8px;
+
+}
+
+
+.editor-live{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    color:#67e7b7;
+
+    font-size:9px;
+
+    font-weight:800;
+
+}
+
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.toolbar{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    padding:10px 14px;
+
+    border-bottom:1px solid var(--border);
+
+    background:rgba(255,255,255,.018);
+
+}
+
+
+.toolbar-left,
+.toolbar-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+}
+
+
+.tool-label{
+
+    color:#697386;
+
+    font-size:10px;
+
+}
+
+
+select,
+.tool-button{
+
+    border:1px solid var(--border);
+
+    background:#101725;
+
+    color:#cdd4df;
+
+    border-radius:7px;
+
+    padding:7px 9px;
+
+    font-size:10px;
+
+    outline:none;
+
+}
+
+
+.tool-button{
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.tool-button:hover{
+
+    background:#172033;
+
+    border-color:
+        rgba(255,255,255,.16);
+
+}
+
+
+.auto-toggle{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    cursor:pointer;
+
+    color:#aab3c2;
+
+    font-size:10px;
+
+}
+
+
+.switch{
+
+    width:30px;
+    height:17px;
+
+    border-radius:20px;
+
+    background:#303849;
+
+    position:relative;
+
+    transition:.2s;
+
+}
+
+
+.switch::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:11px;
+    height:11px;
+
+    top:3px;
+    left:3px;
+
+    background:white;
+
+    border-radius:50%;
+
+    transition:.2s;
+
+}
+
+
+.auto-toggle.active .switch{
+
+    background:var(--purple);
+
+}
+
+
+.auto-toggle.active .switch::after{
+
+    left:16px;
+
+}
+
+
+/* =========================================================
+   TEXTAREA
+========================================================= */
+
+.editor-wrapper{
+
+    position:relative;
+
+}
+
+
+textarea{
+
+    display:block;
+
+    width:100%;
+
+    height:370px;
+
+    padding:25px;
+
+    resize:vertical;
+
+    outline:none;
+
+    border:none;
+
+    color:#edf1f8;
+
+    background:
+
+        radial-gradient(
+            circle at 20% 0%,
+            rgba(124,92,255,.045),
+            transparent 35%
+        ),
+
+        #090e18;
+
+    font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        sans-serif;
+
+    font-size:17px;
+
+    line-height:1.85;
+
+    caret-color:#9a83ff;
+
+}
+
+
+textarea::placeholder{
+
+    color:#4f596b;
+
+}
+
+
+textarea:focus{
+
+    background:
+
+        radial-gradient(
+            circle at 20% 0%,
+            rgba(124,92,255,.07),
+            transparent 35%
+        ),
+
+        #090e18;
+
+}
+
+
+/* =========================================================
+   EDITOR FOOTER
+========================================================= */
+
+.editor-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:12px 16px;
+
+    border-top:1px solid var(--border);
+
+    background:rgba(255,255,255,.018);
+
+}
+
+
+.counter{
+
+    color:#687286;
+
+    font-size:10px;
+
+}
+
+
+.action-buttons{
+
+    display:flex;
+
+    gap:7px;
+
+}
+
+
+.clear-btn,
+.check-btn{
+
+    border:none;
+
+    border-radius:7px;
+
+    padding:8px 12px;
+
+    cursor:pointer;
+
+    font-size:10px;
+
+    font-weight:750;
+
+}
+
+
+.clear-btn{
+
+    color:#9ca6b7;
+
+    background:rgba(255,255,255,.06);
+
+}
+
+
+.check-btn{
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7658ff,
+            #4d83ff
+        );
+
+    box-shadow:
+        0 5px 20px
+        rgba(100,80,255,.20);
+
+}
+
+
+.check-btn:hover{
+
+    filter:brightness(1.1);
+
+}
+
+
+/* =========================================================
+   SIDE PANEL
+========================================================= */
+
+.side-panel{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+
+.panel{
+
+    padding:18px;
+
+    border-radius:17px;
+
+    border:1px solid var(--border);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.045),
+            rgba(255,255,255,.015)
+        );
+
+}
+
+
+.panel-title{
+
+    color:#aeb6c5;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    letter-spacing:.4px;
+
+    margin-bottom:14px;
+
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+.stat{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:10px 0;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.05);
+
+}
+
+
+.stat:last-child{
+
+    border-bottom:none;
+
+}
+
+
+.stat-label{
+
+    color:#737e91;
+
+    font-size:10px;
+
+}
+
+
+.stat-value{
+
+    font-size:17px;
+
+    font-weight:850;
+
+}
+
+
+/* =========================================================
+   CORRECTIONS
+========================================================= */
+
+.corrections{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+
+.empty{
+
+    color:#596476;
+
+    font-size:10px;
+
+}
+
+
+.correction{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:6px;
+
+    padding:9px;
+
+    border-radius:8px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    font-size:10px;
+
+}
+
+
+.wrong{
+
+    color:#ff7d91;
+
+    text-decoration:
+        line-through;
+
+}
+
+
+.arrow{
+
+    color:#5e687a;
+
+}
+
+
+.correct{
+
+    color:#61e3ae;
+
+    font-weight:800;
+
+}
+
+
+/* =========================================================
+   ENGINE STATUS
+========================================================= */
+
+.engine-status{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    padding:10px;
+
+    border-radius:9px;
+
+    background:
+        rgba(53,211,154,.055);
+
+    border:1px solid
+        rgba(53,211,154,.12);
+
+}
+
+
+.engine-icon{
+
+    width:28px;
+    height:28px;
+
+    border-radius:8px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        rgba(53,211,154,.1);
+
+    color:#5fe4ad;
+
+}
+
+
+.engine-info strong{
+
+    display:block;
+
+    font-size:10px;
+
+}
+
+
+.engine-info span{
+
+    display:block;
+
+    margin-top:2px;
+
+    color:#647084;
+
+    font-size:9px;
+
+}
+
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.features{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:14px;
+
+    margin-top:18px;
+
+}
+
+
+.feature{
+
+    padding:19px;
+
+    border-radius:15px;
+
+    border:1px solid var(--border);
+
+    background:
+        rgba(255,255,255,.025);
+
+    transition:.2s;
+
+}
+
+
+.feature:hover{
+
+    transform:translateY(-2px);
+
+    background:
+        rgba(255,255,255,.045);
+
+}
+
+
+.feature-icon{
+
+    width:34px;
+    height:34px;
+
+    border-radius:9px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        rgba(124,92,255,.10);
+
+    color:#9b88ff;
+
+    margin-bottom:12px;
+
+}
+
+
+.feature h3{
+
+    font-size:12px;
+
+    margin-bottom:6px;
+
+}
+
+
+.feature p{
+
+    color:#717c8f;
+
+    font-size:10px;
+
+    line-height:1.6;
+
+}
+
+
+/* =========================================================
+   HOW IT WORKS
+========================================================= */
+
+.how{
+
+    padding:70px 0;
+
+    text-align:center;
+
+}
+
+
+.section-label{
+
+    color:#927fff;
+
+    font-size:9px;
+
+    font-weight:900;
+
+    letter-spacing:1.8px;
+
+}
+
+
+.how h2{
+
+    margin-top:9px;
+
+    font-size:29px;
+
+    letter-spacing:-1px;
+
+}
+
+
+.process{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:12px;
+
+    margin-top:25px;
+
+}
+
+
+.process-card{
+
+    text-align:left;
+
+    padding:18px;
+
+    border-radius:14px;
+
+    border:1px solid var(--border);
+
+    background:
+        rgba(255,255,255,.025);
+
+}
+
+
+.number{
+
+    color:#7963ff;
+
+    font-size:9px;
+
+    font-weight:900;
+
+}
+
+
+.process-card h3{
+
+    margin-top:11px;
+
+    font-size:12px;
+
+}
+
+
+.process-card p{
+
+    margin-top:7px;
+
+    color:#717c8f;
+
+    font-size:10px;
+
+    line-height:1.6;
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+
+    border-top:1px solid var(--border);
+
+    padding:25px;
+
+    text-align:center;
+
+    color:#4e586a;
+
+    font-size:9px;
+
+    letter-spacing:.3px;
+
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loading{
+
+    animation:
+        pulse 1s infinite;
+
+}
+
+
+@keyframes pulse{
+
+    50%{
+        opacity:.45;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:900px){
+
+    .workspace{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .side-panel{
+
+        display:grid;
+
+        grid-template-columns:
+            1fr 1fr;
+
+    }
+
+
+    .process{
+
+        grid-template-columns:
+            1fr 1fr;
+
+    }
+
+}
+
+
+@media(max-width:650px){
+
+    .navbar{
+
+        padding:0 4%;
+
+    }
+
+
+    .status{
+
+        display:none;
+
+    }
+
+
+    .hero{
+
+        padding-top:45px;
+
+    }
+
+
+    .hero h1{
+
+        letter-spacing:-2px;
+
+    }
+
+
+    .features,
+    .process,
+    .side-panel{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .toolbar{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+
+    }
+
+
+    .toolbar-left,
+    .toolbar-right{
+
+        width:100%;
+
+        justify-content:space-between;
+
+    }
+
+
+    textarea{
+
+        height:300px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<header class="navbar">
+
+    <div class="brand">
+
+        <div class="brand-logo">
+            A
+        </div>
+
+        <div>
+
+            <div class="brand-name">
+                AutoSpell
+            </div>
+
+            <div class="brand-sub">
+                INTELLIGENT WRITING ENGINE
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="nav-right">
+
+        <div class="status">
+
+            <span class="status-dot"></span>
+
+            SPELL ENGINE ONLINE
+
+        </div>
+
+
+        <a
+            href="https://github.com/"
+            target="_blank"
+            class="github">
+
+            GitHub ↗
+
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<main class="container">
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero">
+
+    <div class="badge">
+
+        ✦ REAL-TIME LANGUAGE TECHNOLOGY
+
+    </div>
+
+
+    <h1>
+
+        Write freely.<br>
+
+        <span>AutoSpell handles spelling.</span>
+
+    </h1>
+
+
+    <p>
+
+        An intelligent spell correction system that
+        analyzes your writing in real time, detects
+        spelling mistakes, and helps transform
+        incorrect words into accurate text.
+
+    </p>
+
+</section>
+
+
+
+<!-- =========================================================
+     WORKSPACE
+========================================================= -->
+
+<section class="workspace">
+
+
+<!-- =========================================================
+     EDITOR
+========================================================= -->
+
+<div class="editor-card">
+
+
+    <div class="editor-head">
+
+        <div class="dots">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+
+
+        <div class="editor-title">
+
+            AUTOSPELL / SMART EDITOR
+
+        </div>
+
+
+        <div class="editor-live">
+
+            <span class="status-dot"></span>
+
+            LIVE
+
+        </div>
+
+    </div>
+
+
+    <!-- TOOLBAR -->
+
+    <div class="toolbar">
+
+        <div class="toolbar-left">
+
+            <span class="tool-label">
+                Language
+            </span>
+
+
+            <select id="language">
+
+                <option value="en-US">
+                    English (US)
+                </option>
+
+                <option value="en-GB">
+                    English (UK)
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="toolbar-right">
+
+            <label
+                class="auto-toggle active"
+                id="autoToggle">
+
+                <span>
+                    Auto Correct
+                </span>
+
+                <span class="switch"></span>
+
+            </label>
+
+        </div>
+
+    </div>
+
+
+    <!-- TEXT AREA -->
+
+    <div class="editor-wrapper">
+
+        <textarea
+            id="editor"
+            spellcheck="false"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            placeholder="Start typing here...
+
+Try:
+I hav a beutiful day and I wnat to lern engish.
+
+AutoSpell will analyze your text and correct
+spelling mistakes automatically."></textarea>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="editor-footer">
+
+        <div
+            id="wordCount"
+            class="counter">
+
+            0 words · 0 characters
+
+        </div>
+
+
+        <div class="action-buttons">
+
+            <button
+                class="clear-btn"
+                id="clearButton">
+
+                Clear
+
+            </button>
+
+
+            <button
+                class="check-btn"
+                id="checkButton">
+
+                Check Text
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     SIDE PANEL
+========================================================= -->
+
+<aside class="side-panel">
+
+
+    <!-- STATISTICS -->
+
+    <div class="panel">
+
+        <div class="panel-title">
+            SESSION ANALYTICS
+        </div>
+
+
+        <div class="stat">
+
+            <span class="stat-label">
+                Corrections
+            </span>
+
+            <span
+                class="stat-value"
+                id="corrections">
+
+                0
+
+            </span>
+
+        </div>
+
+
+        <div class="stat">
+
+            <span class="stat-label">
+                Words checked
+            </span>
+
+            <span
+                class="stat-value"
+                id="checked">
+
+                0
+
+            </span>
+
+        </div>
+
+
+        <div class="stat">
+
+            <span class="stat-label">
+                Accuracy
+            </span>
+
+            <span
+                class="stat-value"
+                id="accuracy">
+
+                100%
+
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ENGINE -->
+
+    <div class="panel">
+
+        <div class="panel-title">
+            CORRECTION ENGINE
+        </div>
+
+
+        <div class="engine-status">
+
+            <div class="engine-icon">
+                ✓
+            </div>
+
+
+            <div class="engine-info">
+
+                <strong>
+                    Language Engine
+                </strong>
+
+                <span id="engineText">
+                    Ready to analyze
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- RECENT -->
+
+    <div class="panel">
+
+        <div class="panel-title">
+            RECENT CORRECTIONS
+        </div>
+
+
+        <div
+            class="corrections"
+            id="recent">
+
+            <div class="empty">
+                No corrections yet.
+            </div>
+
+        </div>
+
+    </div>
+
+</aside>
+
+</section>
+
+
+
+<!-- =========================================================
+     FEATURES
+========================================================= -->
+
+<section class="features">
+
+
+    <div class="feature">
+
+        <div class="feature-icon">
+            ⚡
+        </div>
+
+        <h3>
+            Real-time correction
+        </h3>
+
+        <p>
+            Spelling is analyzed while you type,
+            allowing mistakes to be corrected
+            without interrupting your workflow.
+        </p>
+
+    </div>
+
+
+    <div class="feature">
+
+        <div class="feature-icon">
+            ◈
+        </div>
+
+        <h3>
+            Large language engine
+        </h3>
+
+        <p>
+            Instead of relying only on a small
+            hard-coded list, AutoSpell uses a
+            dedicated language checking engine.
+        </p>
+
+    </div>
+
+
+    <div class="feature">
+
+        <div class="feature-icon">
+            ✓
+        </div>
+
+        <h3>
+            Smart capitalization
+        </h3>
+
+        <p>
+            Corrections preserve the capitalization
+            style of the original text.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     HOW IT WORKS
+========================================================= -->
+
+<section class="how">
+
+    <div class="section-label">
+        THE TECHNOLOGY
+    </div>
+
+
+    <h2>
+        How AutoSpell works
+    </h2>
+
+
+    <div class="process">
+
+
+        <div class="process-card">
+
+            <div class="number">
+                01 / INPUT
+            </div>
+
+            <h3>
+                User types
+            </h3>
+
+            <p>
+                Text is entered naturally into
+                the AutoSpell editor.
+            </p>
+
+        </div>
+
+
+        <div class="process-card">
+
+            <div class="number">
+                02 / DETECT
+            </div>
+
+            <h3>
+                Detect text
+            </h3>
+
+            <p>
+                The system identifies words
+                and analyzes the complete text.
+            </p>
+
+        </div>
+
+
+        <div class="process-card">
+
+            <div class="number">
+                03 / ANALYZE
+            </div>
+
+            <h3>
+                Find mistakes
+            </h3>
+
+            <p>
+                The language engine compares
+                the text against its language rules.
+            </p>
+
+        </div>
+
+
+        <div class="process-card">
+
+            <div class="number">
+                04 / CORRECT
+            </div>
+
+            <h3>
+                Output
+            </h3>
+
+            <p>
+                Suitable spelling corrections are
+                applied to the user's text.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+
+<footer>
+
+    AUTOSPELL © 2026
+    ·
+    INTELLIGENT SPELL CORRECTION SYSTEM
+
+</footer>
+
+
+
+<script>
+
+/* =========================================================
+   AUTOSPELL ENGINE
+========================================================= */
+
+
+/* ---------------------------------------------------------
+   DOM ELEMENTS
+--------------------------------------------------------- */
+
+const editor =
+    document.getElementById("editor");
+
+const recent =
+    document.getElementById("recent");
+
+const language =
+    document.getElementById("language");
+
+const checkButton =
+    document.getElementById("checkButton");
+
+const clearButton =
+    document.getElementById("clearButton");
+
+const autoToggle =
+    document.getElementById("autoToggle");
+
+const engineText =
+    document.getElementById("engineText");
+
+
+/* ---------------------------------------------------------
+   SESSION DATA
+--------------------------------------------------------- */
+
+let correctionCount = 0;
+
+let wordsChecked = 0;
+
+let autoCorrect = true;
+
+let checking = false;
+
+let lastCheckedText = "";
+
+
+/* ---------------------------------------------------------
+   LOCAL FALLBACK DICTIONARY
+--------------------------------------------------------- */
+
+/*
+    This dictionary is ONLY a fallback.
+
+    The application does NOT depend on this list for
+    normal spelling detection.
+
+    The language engine handles the much larger
+    vocabulary.
+*/
+
+const localCorrections = {
+
+    "teh":"the",
+    "hte":"the",
+    "taht":"that",
+    "adn":"and",
+    "nad":"and",
+
+    "hav":"have",
+    "hvae":"have",
+
+    "beutiful":"beautiful",
+    "beatiful":"beautiful",
+
+    "becuase":"because",
+    "beacuse":"because",
+    "becasue":"because",
+
+    "recieve":"receive",
+    "recieved":"received",
+
+    "freind":"friend",
+    "frined":"friend",
+
+    "wierd":"weird",
+    "weired":"weird",
+
+    "definately":"definitely",
+    "definatly":"definitely",
+
+    "seperate":"separate",
+
+    "occured":"occurred",
+
+    "untill":"until",
+
+    "tommorow":"tomorrow",
+
+    "begining":"beginning",
+
+    "goverment":"government",
+
+    "enviroment":"environment",
+
+    "knowlege":"knowledge",
+
+    "langauge":"language",
+
+    "programing":"programming",
+
+    "developement":"development",
+
+    "experiance":"experience",
+
+    "explaination":"explanation",
+
+    "calender":"calendar",
+
+    "collage":"college",
+
+    "studing":"studying",
+
+    "writting":"writing",
+
+    "writeing":"writing",
+
+    "useing":"using",
+
+    "writen":"written",
+
+    "goin":"going",
+
+    "dont":"don't",
+    "doesnt":"doesn't",
+    "cant":"can't",
+    "wont":"won't",
+
+    "im":"I'm",
+    "ive":"I've",
+    "ill":"I'll",
+
+    "youre":"you're",
+    "youve":"you've",
+
+    "theyre":"they're",
+
+    "thats":"that's",
+    "whats":"what's",
+
+    "isnt":"isn't",
+    "wasnt":"wasn't",
+    "didnt":"didn't",
+
+    "couldnt":"couldn't",
+    "wouldnt":"wouldn't",
+    "shouldnt":"shouldn't"
+
+};
+
+
+/* =========================================================
+   CAPITALIZATION
+========================================================= */
+
+function preserveCase(
+    original,
+    replacement
+){
+
+    if(!original)
+        return replacement;
+
+
+    if(
+        original ===
+        original.toUpperCase()
+    ){
+
+        return replacement.toUpperCase();
+
+    }
+
+
+    if(
+        original[0] ===
+        original[0].toUpperCase()
+    ){
+
+        return (
+            replacement.charAt(0).toUpperCase()
+            +
+            replacement.slice(1)
+        );
+
+    }
+
+
+    return replacement;
+
+}
+
+
+/* =========================================================
+   WORD COUNTER
+========================================================= */
+
+function updateWordCount(){
+
+    const text =
+        editor.value.trim();
+
+
+    const words =
+        text
+        ?
+        text.split(/\s+/).length
+        :
+        0;
+
+
+    const characters =
+        editor.value.length;
+
+
+    document.getElementById(
+        "wordCount"
+    ).textContent =
+        words +
+        " words · " +
+        characters +
+        " characters";
+
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+function updateStats(){
+
+    document.getElementById(
+        "corrections"
+    ).textContent =
+        correctionCount;
+
+
+    document.getElementById(
+        "checked"
+    ).textContent =
+        wordsChecked;
+
+
+    let accuracy = 100;
+
+
+    if(wordsChecked > 0){
+
+        accuracy =
+            Math.max(
+                0,
+                Math.round(
+                    (
+                        1 -
+                        correctionCount /
+                        wordsChecked
+                    )
+                    * 100
+                )
+            );
+
+    }
+
+
+    document.getElementById(
+        "accuracy"
+    ).textContent =
+        accuracy + "%";
+
+}
+
+
+/* =========================================================
+   RECENT CORRECTION
+========================================================= */
+
+function addRecent(
+    wrong,
+    correct
+){
+
+    const empty =
+        recent.querySelector(".empty");
+
+
+    if(empty){
+
+        empty.remove();
+
+    }
+
+
+    const row =
+        document.createElement("div");
+
+    row.className =
+        "correction";
+
+
+    const wrongElement =
+        document.createElement("span");
+
+    wrongElement.className =
+        "wrong";
+
+    wrongElement.textContent =
+        wrong;
+
+
+    const arrow =
+        document.createElement("span");
+
+    arrow.className =
+        "arrow";
+
+    arrow.textContent =
+        "→";
+
+
+    const correctElement =
+        document.createElement("span");
+
+    correctElement.className =
+        "correct";
+
+    correctElement.textContent =
+        correct;
+
+
+    row.appendChild(
+        wrongElement
+    );
+
+    row.appendChild(
+        arrow
+    );
+
+    row.appendChild(
+        correctElement
+    );
+
+
+    recent.prepend(row);
+
+
+    while(
+        recent.children.length > 5
+    ){
+
+        recent.lastChild.remove();
+
+    }
+
+}
+
+
+/* =========================================================
+   REPLACE TEXT
+========================================================= */
+
+function replaceText(
+    text,
+    offset,
+    length,
+    replacement
+){
+
+    return (
+        text.substring(
+            0,
+            offset
+        )
+        +
+        replacement
+        +
+        text.substring(
+            offset + length
+        )
+    );
+
+}
+
+
+/* =========================================================
+   LOCAL CORRECTION ENGINE
+========================================================= */
+
+function applyLocalCorrections(text){
+
+    let changed =
+        false;
+
+
+    let correctionList =
+        [];
+
+
+    /*
+        Match normal words while preserving
+        punctuation and spaces.
+    */
+
+    const result =
+        text.replace(
+            /\b[A-Za-z]+(?:'[A-Za-z]+)?\b/g,
+            function(word){
+
+                const key =
+                    word.toLowerCase();
+
+
+                if(
+                    localCorrections[key]
+                ){
+
+                    const corrected =
+                        preserveCase(
+                            word,
+                            localCorrections[key]
+                        );
+
+
+                    if(
+                        corrected !== word
+                    ){
+
+                        changed = true;
+
+
+                        correctionList.push({
+                            wrong:word,
+                            correct:corrected
+                        });
+
+
+                        return corrected;
+
+                    }
+
+                }
+
+
+                return word;
+
+            }
+        );
+
+
+    return {
+        text:result,
+        changed,
+        corrections:correctionList
+    };
+
+}
+
+
+/* =========================================================
+   LANGUAGE TOOL API
+========================================================= */
+
+async function checkWithLanguageEngine(){
+
+    const originalText =
+        editor.value;
+
+
+    if(!originalText.trim()){
+
+        return;
+
+    }
+
+
+    /*
+        Prevent duplicate request for exactly
+        the same text.
+    */
+
+    if(
+        originalText ===
+        lastCheckedText
+    ){
+
+        return;
+
+    }
+
+
+    lastCheckedText =
+        originalText;
+
+
+    checking = true;
+
+
+    engineText.textContent =
+        "Analyzing text...";
+
+
+    engineText.classList.add(
+        "loading"
+    );
+
+
+    try{
+
+        /*
+            Send the complete text.
+
+            This is the important difference from
+            the original project.
+
+            We are NOT checking against a tiny
+            JavaScript dictionary.
+        */
+
+        const response =
+            await fetch(
+                "https://api.languagetool.org/v2/check",
+                {
+
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/x-www-form-urlencoded"
+                    },
+
+                    body:
+                        "text=" +
+                        encodeURIComponent(
+                            originalText
+                        )
+                        +
+                        "&language=" +
+                        encodeURIComponent(
+                            language.value
+                        )
+                        +
+                        "&enabledOnly=false"
+
+                }
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "Language engine unavailable"
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        /*
+            Only automatically correct spelling
+            errors.
+
+            Grammar suggestions are NOT silently
+            applied because grammar changes can
+            alter the user's intended meaning.
+        */
+
+        const spellingMatches =
+            data.matches.filter(
+                match =>
+                    match.rule &&
+                    (
+                        match.rule.issueType ===
+                        "misspelling"
+                    )
+            );
+
+
+        /*
+            Count words in the complete text.
+        */
+
+        const words =
+            originalText.match(
+                /\b[\p{L}']+\b/gu
+            ) || [];
+
+
+        wordsChecked +=
+            words.length;
+
+
+        /*
+            Apply spelling corrections from
+            the end of the document toward
+            the beginning.
+
+            This keeps offsets valid.
+        */
+
+        let correctedText =
+            originalText;
+
+
+        let numberOfChanges = 0;
+
+
+        const sorted =
+            [...spellingMatches]
+            .sort(
+                (a,b) =>
+                    b.offset -
+                    a.offset
+            );
+
+
+        for(
+            const match
+            of sorted
+        ){
+
+            if(
+                !match.replacements ||
+                match.replacements.length === 0
+            ){
+
+                continue;
+
+            }
+
+
+            const suggestion =
+                match.replacements[0].value;
+
+
+            if(!suggestion)
+                continue;
+
+
+            const wrong =
+                correctedText.substring(
+                    match.offset,
+                    match.offset +
+                    match.length
+                );
+
+
+            const corrected =
+                preserveCase(
+                    wrong,
+                    suggestion
+                );
+
+
+            if(
+                wrong.toLowerCase()
+                ===
+                corrected.toLowerCase()
+            ){
+
+                continue;
+
+            }
+
+
+            correctedText =
+                replaceText(
+                    correctedText,
+                    match.offset,
+                    match.length,
+                    corrected
+                );
+
+
+            numberOfChanges++;
+
+
+            addRecent(
+                wrong,
+                corrected
+            );
+
+        }
+
+
+        if(numberOfChanges > 0){
+
+            editor.value =
+                correctedText;
+
+
+            correctionCount +=
+                numberOfChanges;
+
+        }
+
+
+        updateStats();
+
+        updateWordCount();
+
+
+        engineText.textContent =
+            numberOfChanges > 0
+            ?
+            numberOfChanges +
+            " spelling issue(s) corrected"
+            :
+            "No spelling errors found";
+
+
+    }
+    catch(error){
+
+        console.warn(
+            "Language engine error:",
+            error
+        );
+
+
+        /*
+            Use local fallback if the online
+            language engine cannot be reached.
+        */
+
+        const fallback =
+            applyLocalCorrections(
+                originalText
+            );
+
+
+        if(fallback.changed){
+
+            editor.value =
+                fallback.text;
+
+
+            correctionCount +=
+                fallback.corrections.length;
+
+
+            fallback.corrections
+                .forEach(
+                    item => {
+
+                        addRecent(
+                            item.wrong,
+                            item.correct
+                        );
+
+                    }
+                );
+
+        }
+
+
+        engineText.textContent =
+            fallback.changed
+            ?
+            "Local correction engine active"
+            :
+            "Language engine unavailable";
+
+    }
+
+
+    engineText.classList.remove(
+        "loading"
+    );
+
+
+    checking = false;
+
+}
+
+
+/* =========================================================
+   CHECK COMPLETE TEXT
+========================================================= */
+
+async function checkText(){
+
+    if(checking)
+        return;
+
+
+    /*
+        Always allow local corrections first.
+    */
+
+    const local =
+        applyLocalCorrections(
+            editor.value
+        );
+
+
+    if(local.changed){
+
+        editor.value =
+            local.text;
+
+
+        correctionCount +=
+            local.corrections.length;
+
+
+        local.corrections.forEach(
+            item => {
+
+                addRecent(
+                    item.wrong,
+                    item.correct
+                );
+
+            }
+        );
+
+
+        updateStats();
+
+        updateWordCount();
+
+    }
+
+
+    /*
+        Then use the real language engine.
+    */
+
+    await checkWithLanguageEngine();
+
+}
+
+
+/* =========================================================
+   CHECK WORD WHEN USER FINISHES TYPING
+========================================================= */
+
+let typingTimer;
+
+
+editor.addEventListener(
+    "input",
+    function(){
+
+        updateWordCount();
+
+
+        /*
+            Don't send an API request on every
+            individual keystroke.
+
+            Wait until typing pauses.
+        */
+
+        clearTimeout(
+            typingTimer
+        );
+
+
+        if(
+            !autoCorrect
+        ){
+
+            return;
+
+        }
+
+
+        typingTimer =
+            setTimeout(
+                function(){
+
+                    checkText();
+
+                },
+                900
+            );
+
+    }
+);
+
+
+/* =========================================================
+   SPACE / ENTER
+========================================================= */
+
+editor.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === " "
+            ||
+            event.key === "Enter"
+        ){
+
+            if(autoCorrect){
+
+                /*
+                    Wait for the browser to insert
+                    the space/newline.
+                */
+
+                setTimeout(
+                    function(){
+
+                        checkText();
+
+                    },
+                    80
+                );
+
+            }
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   CHECK BUTTON
+========================================================= */
+
+checkButton.addEventListener(
+    "click",
+    async function(){
+
+        if(checking)
+            return;
+
+
+        checkButton.textContent =
+            "Checking...";
+
+
+        checkButton.classList.add(
+            "loading"
+        );
+
+
+        await checkText();
+
+
+        checkButton.textContent =
+            "Check Text";
+
+
+        checkButton.classList.remove(
+            "loading"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   AUTO CORRECT TOGGLE
+========================================================= */
+
+autoToggle.addEventListener(
+    "click",
+    function(){
+
+        autoCorrect =
+            !autoCorrect;
+
+
+        if(autoCorrect){
+
+            autoToggle.classList.add(
+                "active"
+            );
+
+
+            engineText.textContent =
+                "Automatic correction enabled";
+
+        }
+        else{
+
+            autoToggle.classList.remove(
+                "active"
+            );
+
+
+            engineText.textContent =
+                "Automatic correction paused";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   CLEAR BUTTON
+========================================================= */
+
+clearButton.addEventListener(
+    "click",
+    function(){
+
+        editor.value = "";
+
+
+        correctionCount = 0;
+
+        wordsChecked = 0;
+
+        lastCheckedText = "";
+
+
+        recent.innerHTML = `
+            <div class="empty">
+                No corrections yet.
+            </div>
+        `;
+
+
+        engineText.textContent =
+            "Ready to analyze";
+
+
+        updateWordCount();
+
+        updateStats();
+
+
+        editor.focus();
+
+    }
+);
+
+
+/* =========================================================
+   LANGUAGE CHANGE
+========================================================= */
+
+language.addEventListener(
+    "change",
+    function(){
+
+        lastCheckedText =
+            "";
+
+
+        if(editor.value.trim()){
+
+            checkText();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+updateWordCount();
+
+updateStats();
+
+</script>
+
+</body>
+
+</html>
+```
